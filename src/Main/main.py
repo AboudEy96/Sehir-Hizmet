@@ -1,31 +1,23 @@
-from logging import NullHandler
-from src.Taksi.Taksi import Taksi
+from src.Main.Elektrik.Elektrik import Elektrik
+from src.Main.Taksi.Taksi import Taksi
 
+# TAKSI
 baslangic = 3.0
 gunduz_tarife = 1.5
 gece_tarife = 2.0
 
-km = float(input("Mesafeyi girin (km):"))
+print(" Akıllı Şehir Hizmet Asistanına Hoş Geldiniz")
+print("Bir hizmet seçin:")
+print(" 1. Taksi Ücreti Hesaplayıcısı "
+      ",\n 2. Elektrik Faturası Hesaplayıcısı\n ,"
+      "3. Sağlık Kontrolü (BMI ve İdeal Kilo)")
+selector = int(input())
 
-gun = str(input("Günün zamanını girin (day/night): "))
+if selector == 1:
+    txi = Taksi()
+    txi.TaksiSelected()
 
-hf_sonuINPUT = input(" Hafta sonu mu (Yes/No): ").strip().lower()
-hf_sonu = hf_sonuINPUT.strip().lower() in ["yes", "y", "true", "t"]
-txi = Taksi(km,gun,hf_sonu)
-
-
-def Hesabla():
-    if txi.GUN_ZAMANI == "day":
-        tarife = (baslangic + gunduz_tarife * txi.KM_MESAFE)
-        ucret = tarife * 1.1 if txi.HAFTA_SONU else tarife
-        print("Toplam ücretiniz: $", ucret)
-
-    else:
-        if txi.GUN_ZAMANI == "night":
-         tarife = (baslangic + gece_tarife * txi.KM_MESAFE)
-         ucret = tarife * 1.1 if txi.HAFTA_SONU else tarife
-         print("Toplam ücretiniz: $", ucret)
-
-
-Hesabla()
-##txi.printInfo()
+if (selector == 2):
+    elk = Elektrik()
+    elk.ElektrikSelect()
+##txi.printInfo()1
